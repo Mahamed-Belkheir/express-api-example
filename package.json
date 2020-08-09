@@ -2,7 +2,7 @@
   "name": "express-api-example",
   "version": "1.0.0",
   "description": "an example api made with express and qufl",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,8 +12,7 @@
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^0.21.3",
-    "objection": "^2.2.2",
+    "pg": "^8.3.0",
     "qufl": "^0.2.1"
   }
 }
