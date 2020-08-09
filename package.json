@@ -1,0 +1,11 @@
+{
+  "name": "express-api-example",
+  "version": "1.0.0",
+  "description": "an example api made with express and qufl",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
