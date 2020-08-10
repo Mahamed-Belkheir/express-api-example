@@ -11,7 +11,7 @@ let qufl = new Qufl({
 });
 
 function bootRoutes(expressApp) {    
-    expressApp.use('/user', require('../routes/users'))
+    expressApp.use('/users', require('../routes/users'))
 }
 
 function dependencyInjection() {

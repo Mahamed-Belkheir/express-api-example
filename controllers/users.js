@@ -4,13 +4,14 @@ class UserController {
     }
 
     async signUp(username, password) {
-        let check = await this.UserModel.find(username);
-        if (check) throw "User already exists";
-        return this.UserModel.create(username, password)
+        if (!username || !password) throw `Missing input: ${username ? username: ""} ${password ? password: ""}`;
+        let [user] = await this.UserModel.create(username, password)
+        return user
     }
 
     async signIn(username, password) {
-        let user = await this.UserModel.find(username);
+        if (!username || !password) throw `Missing input: ${username ? username: ""} ${password ? password: ""}`;
+        let [user] = await this.UserModel.find(username);
         if (!user) throw "User not found";
         let check = await this.UserModel.comparePassword(password, user.password);
         if (!check) throw "Invalid password";

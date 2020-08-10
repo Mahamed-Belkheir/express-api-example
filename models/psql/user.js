@@ -4,9 +4,14 @@ const pool = require('./db')
 class User {
     
     static async create(username, password) {
-        password = await bcrypt.hash(password)
-        let result = await pool.query("INSERT INTO users(username, password) VALUES ($1, $2) RETURNING *", [username, password])
-        return result
+        try {
+            password = await bcrypt.hash(password, 8)
+            let result = await pool.query("INSERT INTO users(username, password) VALUES ($1, $2) RETURNING *", [username, password])
+            return result.rows
+        } catch(e) {
+            if (e.code === '23505') throw "User already exists"
+            throw e
+        }
     }
 
     static async find(username) {

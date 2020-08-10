@@ -6,8 +6,9 @@ let router = Express.Router()
 router.post('/signin', async (req, res, next) => {
     try {
         let { username, password } = req.body;
-        let result = await controllers.users.signIn(username, password)
-        return {result}
+        let user = await controllers.users.signIn(username, password)
+        let tokens = qufl.signToken({ sub: user.id })
+        res.send(tokens)
     } catch (e) {
         next(e);
     }
@@ -15,6 +16,10 @@ router.post('/signin', async (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
     try {
+        let { username, password } = req.body
+        let user = await controllers.users.signUp(username, password)
+        let tokens = qufl.signToken({ sub: user.id })
+        res.send(tokens)
         
     } catch (e) {
         next(e);
