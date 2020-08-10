@@ -26,9 +26,10 @@ router.post('/signup', async (req, res, next) => {
     }
 })
 
-router.post('/signout', async (req, res, next) => {
+router.post('/signout', qufl.getValidator(), async (req, res, next) => {
     try {
-
+        qufl.removeToken(req.qufl)
+        res.status(200).send()
     } catch (e) {
         next(e);
     }
