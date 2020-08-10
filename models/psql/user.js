@@ -16,7 +16,7 @@ class User {
 
     static async find(username) {
         let result = await pool.query("SELECT * FROM users WHERE username = $1", [username])
-        return result
+        return result.rows
     }
 
     static comparePassword(password, passwordHash) {

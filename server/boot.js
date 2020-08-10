@@ -1,6 +1,6 @@
 const Qufl = require('qufl');
 const jwt = require('jsonwebtoken');
-const { Controllers } = require('../di/index')
+const { controllerInitializer } = require('../di/index')
 
 const jwtSecret = process.env.JWT_SECRET || "my jwt secret";
 
@@ -15,11 +15,12 @@ function bootRoutes(expressApp) {
 }
 
 function dependencyInjection() {
-    const UserModel = require('../models/psql/user');
-    let controllers = new Controllers({
-        UserModel,
-    })
-    return { controllers };
+    const models = {
+        UserModel: require('../models/psql/user')
+    }
+    return {
+        controllers: controllerInitializer(models)
+    }
 }
 
 module.exports = { qufl, bootRoutes, ...dependencyInjection() }
