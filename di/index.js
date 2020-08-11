@@ -1,10 +1,17 @@
-const UserController = require('../controllers/users');
+const { controllerInitializer } = require('./controller')
 
-
-function controllerInitializer(models) {
+/*
+  Handles dependency injection and initialization of dependant objects.
+  for example, the chosen model implementation is psql, and thus we import
+  the needed models, and initalize our controller with the chosen dependency here.
+ */
+function dependencyInjection() {
+    const models = {
+        UserModel: require('../models/psql/user')
+    }
     return {
-        users: new UserController(models.UserModel)
+        controllers: controllerInitializer(models)
     }
 }
 
-module.exports = { controllerInitializer };
+module.exports = dependencyInjection()
