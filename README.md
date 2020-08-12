@@ -16,5 +16,5 @@ Currently only the user controller exists, the controller uses the dependency in
 ##### View (/routes)
 The View is the exposed API of the application, a HTTP server in this case, it handles HTTP data and authentication based on the Controller's results, the View does not instantiate controllers on its own, it uses the dependency injected controllers from the bootstrapping module.
 
-##### Bootstrap (/server, /di)
-This includes the modules for bootstrapping dependencies and the HTTP server itself, boot.js includes initializing Qufl, registering routes for the Express server, and initialization of dependencies, currently only the controllers are intiailized, and are exported, the View layer accesses the controller instance through here.
+##### Bootstrap (/server, /dependencies)
+This includes the modules for bootstrapping dependencies and the HTTP server itself, boot.js handles registering routes for the Express server. /dependencies folder includes initialization of dependencies, including ones that require DI.
