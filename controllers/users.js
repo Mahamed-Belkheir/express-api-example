@@ -1,4 +1,4 @@
-const { UserNotFound, InvalidCredentials } = require('../excreptions/user');
+const { UserNotFound, InvalidCredentials, MissingUserData } = require('../excreptions/user');
 
 class UserController {
     constructor(UserModel) {
@@ -6,7 +6,7 @@ class UserController {
     }
 
     async signUp(username, password) {
-        if (!username || !password) throw `Missing input: ${username ? username: ""} ${password ? password: ""}`;
+        if (!username || !password) throw new MissingUserData([!password? "password": undefined, !username? "username": undefined]);
         let [user] = await this.UserModel.create(username, password)
         return user
     }

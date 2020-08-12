@@ -19,5 +19,12 @@ class UserAlreadyExists extends Error {
     }
 }
 
+class MissingUserData extends Error {
+    constructor(missingFields) {
+        super("Missing " + missingFields.join(', ') +" fields");
+        this.code = 404;
+    }
+}
 
-module.exports = { UserNotFound, InvalidCredentials, UserAlreadyExists }
+
+module.exports = { UserNotFound, InvalidCredentials, UserAlreadyExists, MissingUserData }
