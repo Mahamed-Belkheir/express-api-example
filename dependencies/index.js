@@ -1,5 +1,12 @@
 const { controllerInitializer } = require('./controller')
-const qufl = require('./qufl');
+const Qufl = require('qufl');
+const jwt = require('jsonwebtoken');
+
+const jwtSecret = process.env.JWT_SECRET || "my jwt secret";
+
+// Initialize the qufl object and export it to be used elsewhere
+let 
+
 /*
   Handles dependency injection and initialization of dependant objects.
   for example, the chosen model implementation is psql, and thus we import
@@ -10,8 +17,9 @@ function dependencyInjection() {
         UserModel: require('../models/psql/user')
     }
     return {
-        controllers: controllerInitializer(models)
+        controllers: controllerInitializer(models),
+        qufl: new Qufl({ jwt: jwt, secret: jwtSecret, timeout: "15m" })
     }
 }
 
-module.exports = {...dependencyInjection(), qufl}
+module.exports = {...dependencyInjection()}
