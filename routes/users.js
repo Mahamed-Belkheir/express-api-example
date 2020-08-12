@@ -1,8 +1,7 @@
 const Express = require('express')
-const { qufl } = require('../server/boot');
 
 // Import dependency injected controller objects
-const { controllers } = require('../di');
+const { controllers, qufl } = require('../dependencies');
 
 let router = Express.Router()
 

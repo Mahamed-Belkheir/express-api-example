@@ -1,5 +1,5 @@
 const { controllerInitializer } = require('./controller')
-
+const qufl = require('./qufl');
 /*
   Handles dependency injection and initialization of dependant objects.
   for example, the chosen model implementation is psql, and thus we import
@@ -14,4 +14,4 @@ function dependencyInjection() {
     }
 }
 
-module.exports = dependencyInjection()
+module.exports = {...dependencyInjection(), qufl}
