@@ -1,3 +1,5 @@
+const { UserNotFound, InvalidCredentials } = require('../excreptions/user');
+
 class UserController {
     constructor(UserModel) {
         this.UserModel = UserModel;
@@ -12,9 +14,9 @@ class UserController {
     async signIn(username, password) {
         if (!username || !password) throw `Missing input: ${username ? username: ""} ${password ? password: ""}`;
         let [user] = await this.UserModel.find(username);
-        if (!user) throw "User not found";
+        if (!user) throw new UserNotFound();
         let check = await this.UserModel.comparePassword(password, user.password);
-        if (!check) throw "Invalid password";
+        if (!check) throw new InvalidCredentials();
         return user;
     }
 

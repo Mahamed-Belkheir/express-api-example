@@ -1,7 +1,7 @@
 const { Pool } = require('pg')
 
 dbConfig = {
-    user: process.env.POSTGRES_USER || 'root',
+    user: process.env.POSTGRES_USER || 'dbman',
     password: process.env.POSTGRES_PASS || 'password',
     database: process.env.POSTGRES_DB || 'example_db',
     host: process.env.POSTGRES_HOST || 'localhost',

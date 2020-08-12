@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const pool = require('./db')
+const { UserAlreadyExists } = require('../../excreptions/user')
 
 class User {
     
@@ -9,7 +10,7 @@ class User {
             let result = await pool.query("INSERT INTO users(username, password) VALUES ($1, $2) RETURNING *", [username, password])
             return result.rows
         } catch(e) {
-            if (e.code === '23505') throw "User already exists"
+            if (e.code === '23505') throw new UserAlreadyExists()
             throw e
         }
     }
