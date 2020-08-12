@@ -12,7 +12,7 @@ class UserController {
     }
 
     async signIn(username, password) {
-        if (!username || !password) throw `Missing input: ${username ? username: ""} ${password ? password: ""}`;
+        if (!username || !password) throw new MissingUserData([!password? "password": undefined, !username? "username": undefined]);
         let [user] = await this.UserModel.find(username);
         if (!user) throw new UserNotFound();
         let check = await this.UserModel.comparePassword(password, user.password);
