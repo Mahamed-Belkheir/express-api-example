@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const pool = require('./db')
+const pool = require('../../db/psql/db')
 const { UserAlreadyExists } = require('../../excreptions/user')
 
 class User {
